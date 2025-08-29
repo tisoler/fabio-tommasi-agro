@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  fabio-tommasi-agro:
+    container_name: fabio-tommasi-agro
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3097:3097"
+    restart: unless-stopped
+    # Add healthcheck to ensure the application is running
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3097"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

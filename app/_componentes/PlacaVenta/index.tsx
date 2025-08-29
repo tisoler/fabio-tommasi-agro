@@ -1,0 +1,54 @@
+import Image from "next/image";
+import Logo from '../../../public/logo-rojo-palido.svg';
+
+const PlacaVenta = () => {
+  return (
+    <div
+      className="
+        relative flex bg-[#211e1e] w-[88%] lg:w-[75%] xl:w-[70%] 2xl:w-[50%] h-auto md:h-[408px] rounded-lg mx-auto 
+        text-white font-semibold text-xl lg:text-3xl p-1 md:p-4
+      "
+    >
+      <div className="flex flex-col max-w-[100%] md:max-w-[65%] gap-3 justify-between pt-[270px] pb-6 md:py-6 pl-2 md:pl-3">
+        <p className="flex gap-2 items-center pr-2 text-center text-[22px] md:text-4xl">
+          10 años de experiencia en el sector
+        </p>
+        <p className="flex gap-2 items-center pr-2">
+          <Image src={Logo} alt="Logo Fabio Tommasi Agro" width={15} height={15} className="ml-1" />
+          Consiga su unidad financiada
+        </p>
+        <p className="flex gap-2 items-center pr-2">
+          <Image src={Logo} alt="Logo Fabio Tommasi Agro" width={15} height={15} className="ml-1" />
+          Nacimos en el campo, sabemos de qué se trata
+        </p>
+        <p className="flex gap-2 items-center pr-2">
+          <Image src={Logo} alt="Logo Fabio Tommasi Agro" width={15} height={15} className="ml-1" />
+          Asesoramiento personalizado
+        </p>
+        <p className="flex gap-2 items-center pr-2">
+          <Image src={Logo} alt="Logo Fabio Tommasi Agro" width={15} height={15} className="ml-1" />
+          Servicio post-venta siempre y en todo lugar
+        </p>
+      </div>
+      <div className="absolute !right-[-10px] md:!right-[-55px] !top-[40px] md:!top-[70px]">
+        <div className="relative h-[220px] md:h-[230px] w-[320px] md:w-[350px]">
+          <Image
+            src='https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/bloque-venta.webp'
+            alt='Consiga su unidad financiada'
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-auto h-full object-cover object-center"
+            quality={85} // Optimización de calidad
+            placeholder="blur" // Opcional: añadir blur placeholder
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+          />
+        </div>
+      </div>
+      <div className="absolute z-40 flex justify-end items-end pb-1 pr-2 pl-10 md:pl-20 pt-3 md:pt-5 top-[12px] md:top-6 right-[-10px] md:right-[-50px] bg-[#e93d44] text-2xl md:text-3xl text-[#211e1e] uppercase">
+        compromiso
+      </div>
+    </div>
+  );
+};
+
+export default PlacaVenta;

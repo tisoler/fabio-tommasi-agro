@@ -1,0 +1,77 @@
+.slider-contenedor {
+  box-shadow: 0px 10px 12px 0px rgba(0, 0, 0, 0.1);
+}
+
+.slider-contenedor::before,
+.slider-contenedor::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 30px;
+}
+
+@media (min-width: 768px) {
+  .slider-contenedor::before,
+  .slider-contenedor::after {
+      width: 40px;
+  }
+}
+
+.slider-contenedor::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+    border-radius: 8px 0 0 8px;
+    z-index: 3;
+}
+
+.slider-contenedor::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+    border-radius: 0 8px 8px 0;
+    z-index: 3;
+}
+
+.slider {
+  display: flex;
+  width: calc(145px * 10); /* Double the content for seamless loop */
+  animation: slide 18s linear infinite;
+  color: black;
+}
+
+.slide {
+  display: flex;
+  gap: 5px;
+  width: 145px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animation */
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-145px * 5)); /* Move by half the content */
+  }
+}
+
+@media (max-width: 768px) {  
+  .slide {
+    width: 130px;
+  }
+  
+  .slider {
+    width: calc(130px * 10);
+    animation: slide 18s linear infinite;
+  }
+  
+  @keyframes slide {
+    to {
+      transform: translateX(calc(-130px * 5));
+    }
+  }
+}

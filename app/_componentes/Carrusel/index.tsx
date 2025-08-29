@@ -3,9 +3,6 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import BotonIzquierda from '../BotonIzquierda';
 import BotonDerecha from '../BotonDerecha';
-import producto1 from '../../../public/producto1.png';
-import producto2 from '../../../public/producto2.png';
-import producto3 from '../../../public/producto3.png';
 
 interface HorizontalScrollerProps {
   autoScrollInterval?: number;
@@ -96,8 +93,8 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
     if (currentIndexRef.current === index || !scrollerRef.current) return;
 
     let newIndex = index;
-    if (newIndex > 3 - 1) newIndex = 0;
-    if (newIndex < 0) newIndex = 3 - 1;
+    if (newIndex > 4 - 1) newIndex = 0;
+    if (newIndex < 0) newIndex = 4 - 1;
     currentIndexRef.current = newIndex;
 
     const viewWidth = scrollerRef.current?.offsetWidth;
@@ -127,7 +124,7 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
 
     // Calculate boundaries with 10px elastic limit
     const viewWidth = scrollerRef.current?.offsetWidth;
-    const rightTranslateBound = -(3 - 1) * (viewWidth || 1) - 10; // 10px past last
+    const rightTranslateBound = -(4 - 1) * (viewWidth || 1) - 10; // 10px past last
     const leftTranslateBound = 10; // 10px past first
 
     // Apply elastic resistance when beyond limits
@@ -173,40 +170,118 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
       </div>
       <div
         ref={scrollerRef}
-        className="flex w-full h-[540px] will-change-transform"
+        className="flex w-full h-[540px] md:h-[430px] will-change-transform"
         onTouchStart={handleStart}
         onTouchMove={handleMove}
         onTouchEnd={handleEnd}
       >
         <div
           key={1}
-          className="flex-shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
+          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
         >
-          <Image src={producto1} alt="Producto 1" height={540} className="w-full h-[540px]" />
+          <picture className='relative flex w-full h-full'>
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-1-desktop.webp 100w"
+              height={740}
+              width={2560}
+            />
+            <Image
+              loading='eager'
+              priority
+              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-1.webp'}
+              alt="Producto destacado 1"
+              fill
+              className="w-full h-auto object-cover object-center"
+              quality={85} // Optimización de calidad
+              placeholder="blur" // Opcional: añadir blur placeholder
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+            />
+          </picture>
         </div>
         <div
           key={2}
-          className="flex-shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
+          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
         >
-          <Image src={producto2} alt="Producto 1" height={540} className="w-full h-[540px]" />
+          <picture className='relative flex w-full h-full'>
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-2-desktop.webp 100w"
+              height={740}
+              width={2560}
+            />
+            <Image
+              loading='eager'
+              priority
+              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-2.webp'}
+              alt="Producto destacado 2"
+              fill
+              className="w-full h-auto object-cover object-center"
+              quality={85} // Optimización de calidad
+              placeholder="blur" // Opcional: añadir blur placeholder
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+            />
+          </picture>
         </div>
         <div
           key={3}
-          className="flex-shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
+          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
         >
-          <Image src={producto3} alt="Producto 1" height={540} className="w-full h-[540px]" />
+           <picture className='relative flex w-full h-full'>
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-3-desktop.webp 100w"
+              height={740}
+              width={2560}
+            />
+            <Image
+              loading='eager'
+              priority
+              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-3.webp'}
+              alt="Producto destacado 3"
+              fill
+              className="w-full h-auto object-cover object-center"
+              quality={85} // Optimización de calidad
+              placeholder="blur" // Opcional: añadir blur placeholder
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+            />
+          </picture>
+        </div>
+        <div
+          key={4}
+          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
+        >
+           <picture className='relative flex w-full h-full'>
+            <source 
+              media="(min-width: 768px)" 
+              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-4-desktop.webp 100w"
+              height={740}
+              width={2560}
+            />
+            <Image
+              loading='eager'
+              priority
+              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-4.webp'}
+              alt="Producto destacado 4"
+              fill
+              className="w-full h-auto object-cover object-center"
+              quality={85} // Optimización de calidad
+              placeholder="blur" // Opcional: añadir blur placeholder
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+            />
+          </picture>
         </div>
       </div>
       <div className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10">
         <BotonDerecha onClick={() => swipeSlide(currentIndexRef.current + 1)} />
       </div>
-      <div className="absolute bottom-2 left-1/2 z-40 flex items-center justify-center h-[40px] gap-[8px] md:gap-[12px] lg:gap-[16px]">
-        {Array(3).fill(1).map((_, index) => (
+      <div className="absolute bottom-2 w-full z-40 flex items-center justify-center h-[40px] gap-6">
+        {Array(4).fill(1).map((_, index) => (
           <button
             id={`bullet-${index}`}
             key={index}
             onClick={() => swipeSlide(index)}
-            className={`w-[6px] md:w-[6px] lg:w-[8px] h-[6px] md:h-[6px] lg:h-[8px] rounded-full ${
+            className={`w-[8px] md:w-[10px] h-[8px] md:h-[10px] rounded-full cursor-pointer ${
               currentIndexRef.current === index
                 ? 'bg-color-marca'
                 : 'bg-color-sec-marca'

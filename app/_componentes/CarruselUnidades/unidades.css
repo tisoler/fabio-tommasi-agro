@@ -1,0 +1,4 @@
+/* Técnica 1: Webkit (Chrome, Safari, Edge) */
+.webkit-scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

@@ -1,56 +1,62 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { Encabezado } from "./_componentes/Encabezado";
-
-const geistSans = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next';
+import { Afacad_Flux, Geist_Mono,  } from 'next/font/google';
+import './globals.css';
+import { Encabezado } from './_componentes/Encabezado';
+import WhatsAppButton from './_componentes/WhatsApp';
 
 const geistMono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
+  variable: '--font-mono',
+  subsets: ['latin'],
 });
 
+const afacadSans = Afacad_Flux({
+  variable: '--font-sans',
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
-  title: "Fabio Tommasi | Agro",
-  description: "Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.",
-  metadataBase: new URL("https://fabiotommasi.com.ar"),
+  title: 'Fabio Tommasi | Agro',
+  description: 'Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.',
+  metadataBase: new URL('https://fabiotommasi.com.ar'),
   openGraph: {
-    title: "Fabio Tommasi | Agro",
-    description: "Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.",
-    images: ["/opengraph-image.jpg"],
+    title: 'Fabio Tommasi | Agro',
+    description: 'Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.',
+    images: ['/opengraph-image.jpg'],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Fabio Tommasi | Agro",
-    description: "Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.",
-    creator: "@tisoler",
-    images: ["/opengraph-image.jpg"],
+    card: 'summary_large_image',
+    title: 'Fabio Tommasi | Agro',
+    description: 'Concesionario agrícola: maquinaria nueva y usada, camiones, pick-ups, autos.',
+    creator: '@tisoler',
+    images: ['/opengraph-image.jpg'],
   },
   verification: {
-    google: "google",
-    yandex: "yandex",
-    yahoo: "yahoo",
+    google: 'google',
+    yandex: 'yandex',
+    yahoo: 'yahoo',
   },
-  generator: "Next.js",
-  applicationName: "fabioTommasiAgro",
+  generator: 'Next.js',
+  applicationName: 'fabioTommasiAgro',
+  authors: [{ name: 'Tisoler', url: 'https://github.com/tisoler' }],
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${afacadSans.className} ${geistMono.className} antialiased`}
       >
         <Encabezado />
-        {children}
+        <main className='relative'>
+          {children}
+          <aside className='absolute right-0 bottom-0 w-0 md:w-3 h-[60rem] bg-color-marca z-50'></aside>
+          <WhatsAppButton fijo />
+        </main>
+        <footer className='w-full h-96 bg-color-marca'></footer>
       </body>
     </html>
   );

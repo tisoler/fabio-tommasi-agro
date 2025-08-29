@@ -1,0 +1,23 @@
+.categoria-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.9) 100%);
+}
+
+.categoria-bloque:hover .categoria-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.9) 100%);
+}
+
+.categoria-descripcion {
+  height: 5rem;
+}
+
+@media (min-width: 768px) {
+  .categoria-descripcion {
+    height: 0px;
+    overflow: hidden;
+  }
+}
+
+.categoria-bloque:hover .categoria-descripcion {
+  transform: scaleY(1);
+  height: 4rem;
+}
