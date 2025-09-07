@@ -1,20 +1,20 @@
-import { Categoria } from "@/app/_modelos/categoria";
 import Link from "next/link";
 import Image from "next/image";
-import './categoria.css';
+import estilo from './categoria.module.css';
+import { CategoriaTipo } from "@/app/_lib/tipos";
 
-const CategoriaBloque = ({ categoria, esGrande = false }: { categoria: Categoria, esGrande?: boolean }) => {
-
+const CategoriaBloque = ({ categoria, esGrande = false }: { categoria: CategoriaTipo, esGrande?: boolean }) => {
   return (
     <Link
       href={categoria.href}
       prefetch={false}
-      className={`relative bg-white w-full h-[100vw] lg:h-[30vw] flex flex-col items-start justify-center ${esGrande ? 'md:col-span-5' : 'md:col-span-4'} group categoria-bloque`}
+      className={`relative bg-white w-full h-[100vw] lg:h-[30vw] flex flex-col items-start justify-center ${esGrande ? 'md:col-span-5' : 'md:col-span-4'} group ${estilo.categoriaBloque}`}
     >
       <div className="relative w-full h-full">
         <Image
           src={categoria.imagenEscritorio}
           alt={categoria.titulo}
+          loading="lazy"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-auto object-cover object-center"
@@ -24,11 +24,11 @@ const CategoriaBloque = ({ categoria, esGrande = false }: { categoria: Categoria
         />
       </div>
       <div
-        className="absolute bottom-0 left-0 w-full h-full pointer-events-none categoria-overlay"
+        className={`absolute bottom-0 left-0 w-full h-full pointer-events-none ${estilo.categoriaOverlay}`}
       ></div>
       <div className="absolute flex flex-col justify-center items-center gap-2 w-full bottom-16 px-2 md:px-8">
         <h2 className="text-white text-4xl md:text-5xl font-semibold">{categoria.titulo}</h2>
-        <p className="text-neutral-200 text-xl px-3 md:px-20 transition-all duration-300 categoria-descripcion">
+        <p className={`text-neutral-200 text-xl px-3 md:px-20 transition-all duration-300 ${estilo.categoriaDescripcion}`}>
           {categoria.descripcion}
         </p>
       </div>
@@ -41,7 +41,7 @@ const CategoriaBloque = ({ categoria, esGrande = false }: { categoria: Categoria
   );
 };
 
-const ListaCategorias = ({ categorias }: { categorias: Categoria[] }) => {
+const ListaCategorias = ({ categorias }: { categorias: CategoriaTipo[] }) => {
   return (
     <section className="grid grid grid-cols-1 items-center md:grid-cols-9 gap-4 px-2 md:px-20 pb-20 md:pb-30 bg-color-fondo-gris">
       {

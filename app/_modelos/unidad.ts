@@ -1,6 +1,7 @@
+import DataBaseConnection from '@/app/_lib/sequelize';
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import DataBaseConnection from '../_lib/sequelize';
 import { initMarca, Marca } from './marca';
+import { Categoria, initCategoria } from './categoria';
 
 export class Unidad extends Model<
   InferAttributes<Unidad>,
@@ -17,6 +18,7 @@ export class Unidad extends Model<
   declare nuevo: boolean;
   declare modelo: string;
   declare idMarca: number;
+  declare slug: string;
 }
 
 export const initUnidad = async () => {
@@ -69,6 +71,11 @@ export const initUnidad = async () => {
         type: DataTypes.NUMBER,
         allowNull: false,
       },
+      slug: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
     },
     {
       sequelize,
@@ -81,5 +88,11 @@ export const initUnidad = async () => {
   await initMarca();
   if (!Unidad.associations.marca) {
     Unidad.belongsTo(Marca, { foreignKey: 'idMarca', as: 'marca' });
+  }
+
+  // Asociar Categoria a Unidad
+  await initCategoria();
+  if (!Unidad.associations.categoria) {
+    Unidad.belongsTo(Categoria, { foreignKey: 'idCategoria', as: 'categoria' });
   }
 };

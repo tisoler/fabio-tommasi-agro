@@ -6,12 +6,10 @@ import BotonDerecha from '../BotonDerecha';
 
 interface HorizontalScrollerProps {
   autoScrollInterval?: number;
-  className?: string;
 }
 
 const Carrusel: React.FC<HorizontalScrollerProps> = ({
   autoScrollInterval = 3000, // default value of auto-scroll
-  className = ''
 }) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -162,7 +160,7 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
 
   return (
     <div
-      className={`relative w-full overflow-hidden ${className}`}
+      className='relative w-full overflow-hidden'
       ref={containerRef}
     >
       <div className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10">
@@ -170,107 +168,41 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
       </div>
       <div
         ref={scrollerRef}
-        className="flex w-full h-[540px] md:h-[430px] will-change-transform"
+        className="flex w-full will-change-transform"
         onTouchStart={handleStart}
         onTouchMove={handleMove}
         onTouchEnd={handleEnd}
       >
-        <div
-          key={1}
-          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
-        >
-          <picture className='relative flex w-full h-full'>
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-1-desktop.webp 100w"
-              height={740}
-              width={2560}
-            />
-            <Image
-              loading='eager'
-              priority
-              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-1.webp'}
-              alt="Producto destacado 1"
-              fill
-              className="w-full h-auto object-cover object-center"
-              quality={85} // Optimización de calidad
-              placeholder="blur" // Opcional: añadir blur placeholder
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
-            />
-          </picture>
-        </div>
-        <div
-          key={2}
-          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
-        >
-          <picture className='relative flex w-full h-full'>
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-2-desktop.webp 100w"
-              height={740}
-              width={2560}
-            />
-            <Image
-              loading='eager'
-              priority
-              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-2.webp'}
-              alt="Producto destacado 2"
-              fill
-              className="w-full h-auto object-cover object-center"
-              quality={85} // Optimización de calidad
-              placeholder="blur" // Opcional: añadir blur placeholder
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
-            />
-          </picture>
-        </div>
-        <div
-          key={3}
-          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
-        >
-           <picture className='relative flex w-full h-full'>
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-3-desktop.webp 100w"
-              height={740}
-              width={2560}
-            />
-            <Image
-              loading='eager'
-              priority
-              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-3.webp'}
-              alt="Producto destacado 3"
-              fill
-              className="w-full h-auto object-cover object-center"
-              quality={85} // Optimización de calidad
-              placeholder="blur" // Opcional: añadir blur placeholder
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
-            />
-          </picture>
-        </div>
-        <div
-          key={4}
-          className="relative shrink-0 w-full md:inline-flex md:justify-center md:items-center md:snap-start"
-        >
-           <picture className='relative flex w-full h-full'>
-            <source 
-              media="(min-width: 768px)" 
-              srcSet="https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-4-desktop.webp 100w"
-              height={740}
-              width={2560}
-            />
-            <Image
-              loading='eager'
-              priority
-              src={'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-4.webp'}
-              alt="Producto destacado 4"
-              fill
-              className="w-full h-auto object-cover object-center"
-              quality={85} // Optimización de calidad
-              placeholder="blur" // Opcional: añadir blur placeholder
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
-            />
-          </picture>
-        </div>
+        {
+          new Array(4).fill(0).map((_, idx) => 
+            <div
+              key={idx + 1}
+              className="relative shrink-0 md:snap-start aspect-[4/5] md:aspect-auto md:h-[430px] w-full"
+            >
+              <Image
+                priority
+                loading="eager"
+                fetchPriority={idx === 0 ? 'high' : 'auto'}
+                src={`https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/producto-destacado-${idx + 1}.webp?v=1`}
+                alt={`Producto destacado ${idx + 1}`}
+                fill
+                className="object-cover object-center"
+                quality={85} // Optimización de calidad
+                placeholder="blur" // Opcional: añadir blur placeholder
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+                // Custom loader para diferentes imágenes por breakpoint
+                loader={({ width }) => {
+                  const isMobile = width <= 767
+                  const quality = isMobile ? 90 : 85
+                  const imageName = isMobile 
+                    ? `producto-destacado-${idx + 1}.webp` 
+                    : `producto-destacado-${idx + 1}-desktop.webp`
+                  return `https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/productos/${imageName}?v=1&w=${width}&q=${quality || 85}`
+                }}
+              />
+            </div>
+          )
+        }
       </div>
       <div className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10">
         <BotonDerecha onClick={() => swipeSlide(currentIndexRef.current + 1)} />

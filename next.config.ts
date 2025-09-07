@@ -12,7 +12,41 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ['image/avif', 'image/webp'], // AVIF first as it's more efficient
-    minimumCacheTTL: 86400, // Cache optimized images for 1 day
+    minimumCacheTTL: 2592000, // 30 días en segundos
+  },
+  async headers() {
+    return [
+      {
+        source: '/_next/image',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, immutable', // 30 días
+          },
+        ],
+      },
+      // Para SVG específicamente
+      {
+        // Para archivos SVG estáticos en la carpeta public
+        source: '/:all*(svg)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, immutable',
+          },
+        ],
+      },
+      {
+        // Para SVG en rutas específicas
+        source: '/images/:path*.svg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, immutable',
+          },
+        ],
+      },
+    ];
   },
 };
 

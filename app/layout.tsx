@@ -3,15 +3,22 @@ import { Afacad_Flux, Geist_Mono,  } from 'next/font/google';
 import './globals.css';
 import { Encabezado } from './_componentes/Encabezado';
 import WhatsAppButton from './_componentes/WhatsApp';
+import Footer from './_componentes/Footer';
 
 const geistMono = Geist_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const afacadSans = Afacad_Flux({
   variable: '--font-sans',
   subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -56,7 +63,7 @@ export default function RootLayout({
           <aside className='absolute right-0 bottom-0 w-0 md:w-3 h-[60rem] bg-color-marca z-50'></aside>
           <WhatsAppButton fijo />
         </main>
-        <footer className='w-full h-96 bg-color-marca'></footer>
+        <Footer />
       </body>
     </html>
   );

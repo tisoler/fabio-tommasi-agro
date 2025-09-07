@@ -1,5 +1,5 @@
+import DataBaseConnection from '@/app/_lib/sequelize';
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import DataBaseConnection from '../_lib/sequelize';
 
 export class PrecioMercado extends Model<
   InferAttributes<PrecioMercado>,
