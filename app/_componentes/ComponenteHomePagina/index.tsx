@@ -1,11 +1,18 @@
 import { Suspense } from "react";
-import Carrusel from "../Carrusel";
-import SubtituloDinamico from "../Subtitulo";
-import PlacaVenta from "../PlacaVenta";
-import CarruselUnidades from "../CarruselUnidades";
+import dynamic from "next/dynamic";
 import { obtenerCategorias, obtenerPrecios, obtenerUnidadesNovedades, obtenerUnidadesOportunidades } from "@/app/_lib/servicios";
-import ListaCategorias from "../CategoriaBloque";
-import CarruselMercadoArgentino from "../CarruselPrecios";
+import Carrusel from "../Carrusel";
+import CarruselUnidades from "../CarruselUnidades";
+import SkeletonCarrusel from "../Skeletons/Carrusel";
+import SkeletonCarruselUnidades from "../Skeletons/CarruselUnidades";
+import SkeletonListaCategorias from "../Skeletons/ListaCategorias";
+import SkeletonCarruselMercadoArgentino from "../Skeletons/CarruselMercadoArgentino";
+
+// Carga diferida del componente que no es crítico
+const SubtituloDinamico = dynamic(() => import('../Subtitulo/subtitulo'));
+const ListaCategorias = dynamic(() => import('../CategoriaBloque/categoriaBloque'));
+const CarruselMercadoArgentino = dynamic(() => import('../CarruselPrecios/carruselPrecios'));
+const PlacaVenta = dynamic(() => import('../PlacaVenta'));
 
 const ComponenteHome = async () => {
   const [precios, categorias, unidadesOportunidades, unidadesNovedades] = await Promise.all([
@@ -17,23 +24,23 @@ const ComponenteHome = async () => {
 
   return (
     <section className="flex flex-col bg-white">
-      <Suspense fallback={<div className="flex w-full h-[540px] md:h-[430px]">Carrusel</div>}>
+      <Suspense fallback={<SkeletonCarrusel />}>
         <Carrusel />
       </Suspense>
-      <Suspense fallback={<div className="text-center h-[90vw]">Cargando unidades...</div>}>
+      <Suspense fallback={<SkeletonCarruselUnidades />}>
         <CarruselUnidades unidades={unidadesOportunidades} titulo='Oportunidades' priorizar />
       </Suspense>
       <SubtituloDinamico />
-      <Suspense fallback={<div className="text-center h-[90vw]">Cargando categorías...</div>}>
+      <Suspense fallback={<SkeletonListaCategorias />}>
         <ListaCategorias categorias={categorias} />
       </Suspense>
-      <Suspense fallback={<div className="text-center h-[70px]">Cargando precios...</div>}>
-        <div className="bg-color-fondo-gris relative flex w-full justify-center">
-          <CarruselMercadoArgentino precios={precios} className='absolute top-[-35px] z-40 bg-white' />
+      <Suspense fallback={<SkeletonCarruselMercadoArgentino />}>
+        <div className="relative flex w-full justify-center">
+          <CarruselMercadoArgentino precios={precios} />
         </div>
       </Suspense>
       <div className="mt-8 md:mt-0">
-        <Suspense fallback={<div className="text-center h-[90vw]">Cargando unidades...</div>}>
+        <Suspense fallback={<SkeletonCarruselUnidades />}>
           <CarruselUnidades unidades={unidadesNovedades} titulo='Novedades' />
         </Suspense>
       </div>

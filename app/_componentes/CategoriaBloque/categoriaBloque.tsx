@@ -1,23 +1,29 @@
+'use client';
 import Link from "next/link";
 import Image from "next/image";
-import estilo from './categoria.module.css';
+import estilo from './categoriaBloque.module.css';
 import { CategoriaTipo } from "@/app/_lib/tipos";
+import { cdnLoader } from "@/app/_lib/utilidades";
 
 const CategoriaBloque = ({ categoria, esGrande = false }: { categoria: CategoriaTipo, esGrande?: boolean }) => {
   return (
     <Link
       href={categoria.href}
       prefetch={false}
-      className={`relative bg-white w-full h-[100vw] lg:h-[30vw] flex flex-col items-start justify-center ${esGrande ? 'md:col-span-5' : 'md:col-span-4'} group ${estilo.categoriaBloque}`}
+      className={`
+        relative w-full flex flex-col items-start justify-center aspect-[4/5] md:aspect-auto md:h-[30vw]
+        ${esGrande ? 'md:col-span-5' : 'md:col-span-4'} group ${estilo.categoriaBloque}
+      `}
     >
-      <div className="relative w-full h-full">
+      <div className="relative aspect-[4/5] md:aspect-auto md:h-[30vw] w-full">
         <Image
+          loader={cdnLoader}
           src={categoria.imagenEscritorio}
           alt={categoria.titulo}
           loading="lazy"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="w-full h-auto object-cover object-center"
+          className="object-cover object-center"
           quality={85} // Optimización de calidad
           placeholder="blur" // Opcional: añadir blur placeholder
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad

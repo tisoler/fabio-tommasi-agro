@@ -11,7 +11,7 @@ const SubtituloDinamico= () => {
       <h2>
         Explore y encuentre su
       </h2>
-      <div className={`${estilo.rotatingText} tracking-tight [word-spacing:-3px] md:[word-spacing:-1px] ml-[5px] md:ml-[10px]`}>
+      <div className={`${estilo.rotatingText} tracking-tight ml-[5px] md:ml-[10px]`}>
         <span className="z-40">herramienta</span>
         <span>vehículo</span>
         <span>transporte</span>

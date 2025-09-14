@@ -1,3 +1,5 @@
+'use client';
+import { cdnLoader } from "@/app/_lib/utilidades";
 import Image from "next/image";
 
 const URL_LOGO = 'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/logo-rojo-palido.svg';
@@ -34,11 +36,12 @@ const PlacaVenta = () => {
       <div className="absolute !right-[-10px] md:!right-[-55px] !top-[40px] md:!top-[70px]">
         <div className="relative h-[220px] md:h-[230px] w-[320px] md:w-[350px]">
           <Image
+            loader={cdnLoader}
             loading="lazy"
             src='https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/bloque-venta.webp'
             alt='Consiga su unidad financiada'
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 767px) 320px, 350px"
             className="w-auto h-full object-cover object-center"
             quality={85} // Optimización de calidad
             placeholder="blur" // Opcional: añadir blur placeholder

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { UnidadTipo } from "@/app/_lib/tipos";
-import CarruselUnidades from "./CarruselUnidades";
+import CarruselUnidades from "./carruselUnidades";
 
 const CarruselUnidadesContenedor = ({ unidades, titulo, priorizar = false }: { unidades: UnidadTipo[], titulo: string, priorizar?: boolean }) => {
   return (

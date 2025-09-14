@@ -1,8 +1,15 @@
 import ComponenteUnidad from "@/app/_componentes/ComponenteUnidadPagina";
 import { obtenerUnidadPorSlug } from "@/app/_lib/servicios";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 export const revalidate = 7200; // regenerar la página cada 1 hora y guardar en caché
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/unidad',
+  }
+};
 
 export default async function PaginaUnidad({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NUEVO, USADO } from "@/app/_lib/constantes";
 import { UnidadConMarca } from "@/app/_lib/tipos";
+import { cdnLoader } from "@/app/_lib/utilidades";
 
 const UnidadTarjeta = (
   { unidad, priorizar = false }:
@@ -12,20 +13,20 @@ const UnidadTarjeta = (
     <Link
       href={`/unidad/${unidad.slug}`}
       key={unidad.id}
-      className="flex flex-col w-[250px] md:w-[280px] group"
+      className="flex flex-col w-[240px] md:w-[280px] group"
     >
-      <div className="relative w-[250px] md:w-[280px] h-[220px] md:h-[250px]">
+      <div className="relative w-[240px] md:w-[280px] h-[220px] md:h-[250px]">
         <Image
+          loader={cdnLoader}
           src={unidad.imagenDestacadaUrl}
           alt={unidad.imagenDestacadaTextoAlt}
-          loading={`${priorizar ? 'eager' : 'lazy'}`}
-          priority={priorizar}
+          priority={priorizar && typeof window !== "undefined" && window.innerWidth >= 768}
           fill
-          sizes="(max-width: 768px) 250px, 280px"
+          sizes="(max-width: 767px) 240px, 280px"
           className="object-cover object-center"
-          quality={80} // Optimización de calidad
-          placeholder="blur" // Opcional: añadir blur placeholder
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
+          quality={80}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII="
         />
       </div>
       <h2

@@ -3,7 +3,7 @@ import { Afacad_Flux, Geist_Mono,  } from 'next/font/google';
 import './globals.css';
 import { Encabezado } from './_componentes/Encabezado';
 import WhatsAppButton from './_componentes/WhatsApp';
-import Footer from './_componentes/Footer';
+import Footer from './_componentes/Footer/Footer';
 
 const geistMono = Geist_Mono({
   variable: '--font-mono',
@@ -45,6 +45,19 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   applicationName: 'fabioTommasiAgro',
   authors: [{ name: 'Tisoler', url: 'https://github.com/tisoler' }],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({
@@ -54,6 +67,87 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Los estilos críticos para el viewport inicial */
+          /* ENCABEZADO */
+          .header {
+            transition: transform 0.3s ease-in-out;
+          }
+
+          .header.hidden {
+            transform: translateY(-100%);
+          }
+
+          .headerMobile {
+            display: flex;
+          }
+
+          @media (min-width: 768px) {
+            .headerMobile {
+              display: none;
+            }
+          }
+
+          .headerEscritorio {
+            display: none;
+          }
+
+          @media (min-width: 768px) {
+            .headerEscritorio {
+              display: flex;
+            }
+          }
+
+          .headerPlaceholder {
+            transition: height 0.3s ease;
+          }
+          
+          .burger {
+            position: relative;
+            display: flex;
+            cursor: pointer;
+            width: 25px;
+            height: 20px;
+            opacity: 0;
+            visibility: hidden;
+            background: transparent;
+            align-items: center;
+            margin: auto 15px;
+          }
+
+          @media (max-width: 767px) {
+            .burger {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+
+          .burger .burgerLine {
+            position: absolute;
+            display: block;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            opacity: 1;
+            border-radius: 15px;
+            background: #fff;
+          }
+
+          .burger .burgerLine:nth-child(1) {
+            top: 0px;
+          }
+
+          .burger .burgerLine:nth-child(2) {
+            top: 8px;
+            width: 70%;
+          }
+
+          .burger .burgerLine:nth-child(3) {
+            top: 16px;
+          }
+        `}} />
+      </head>
       <body
         className={`${afacadSans.className} ${geistMono.className} antialiased`}
       >

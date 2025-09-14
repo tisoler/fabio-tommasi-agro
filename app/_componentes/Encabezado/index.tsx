@@ -3,7 +3,7 @@ import { RefObject, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IconoLupa } from "../Iconos/Lupa";
-import estilo from './encabezado.module.css';
+import { cdnLoader } from "@/app/_lib/utilidades";
 
 export function Encabezado() {
   const headerMobileRef = useRef<HTMLDivElement>(null);
@@ -22,10 +22,10 @@ export function Encabezado() {
       if (window.scrollY <= lastScrollY.current || window.scrollY < 50) {
           // Scroll hacia arriba - mostrar header
           // O estamos en la parte superior
-          headerRef.current.classList.remove(estilo.hidden);
+          headerRef.current.classList.remove('hidden');
       } else {
           // Scroll hacia abajo - ocultar header
-          headerRef.current.classList.add(estilo.hidden);
+          headerRef.current.classList.add('hidden');
       }
       
       lastScrollY.current = window.scrollY;
@@ -42,12 +42,19 @@ export function Encabezado() {
 
   return (
     <>
-      <div className={`${estilo.headerPlaceholder} h-[60px] bg-white`}></div>
-      <header ref={headerEscritorioRef} className={`w-full bg-color-marca fixed top-0 left-0 z-50 ${estilo.header} ${estilo.headerEscritorio}`}>
+      <div className='headerPlaceholder h-[60px] bg-white'></div>
+      <header ref={headerEscritorioRef} className='w-full bg-color-marca fixed top-0 left-0 z-50 header headerEscritorio'>
         <div className="ml-10 flex w-full items-center justify-between pl-4">
           <Link prefetch={false} href="/" className="flex items-center text-2xl text-slate-50">
             <div className="flex justify-center items-center mr-[0.4rem]">
-              <Image width={27} height={27} alt="Fabio Tommasi Agro" priority loading='eager' src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/logo.svg"} />
+              <Image
+                width={27}
+                height={27}
+                alt="Fabio Tommasi Agro"
+                priority
+                loading='eager'
+                src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/logo.svg"}
+              />
             </div>
             <h1>
               <span className="font-semibold">
@@ -66,20 +73,45 @@ export function Encabezado() {
           </div>
           <div className="flex h-full justify-around items-center gap-4 bg-white pr-4 pl-10 py-1">
             <a href="https://pncremolques.com.ar" target="_blank">
-              <Image width={384} height={122} className="h-[55px] w-auto" priority loading='eager' alt="PNC remolques" src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/pnc-logo.png"} />
+              <Image
+                loader={cdnLoader}
+                width={384}
+                height={122}
+                className="h-[55px] w-auto"
+                priority
+                loading='eager'
+                alt="PNC remolques"
+                src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/pnc-logo.webp"}
+              />
             </a>
             <a href="https://www.maquinasombu.com.ar/" target="_blank">
-              <Image width={384} height={150} className="h-[55px] w-auto" priority loading="eager" alt="Maquinarias agrícolas y remolques Ombú" src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/ombu-logo.png"} />
+              <Image
+                loader={cdnLoader}
+                width={384}
+                height={150}
+                className="h-[55px] w-auto"
+                priority
+                loading="eager"
+                alt="Maquinarias agrícolas y remolques Ombú"
+                src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/ombu-logo.webp"}
+              />
             </a>
           </div>
         </div>
       </header>
       <>
-        <header ref={headerMobileRef} className={`w-full fixed top-0 left-0 z-50 ${estilo.header} ${estilo.headerMobile}`}>
+        <header ref={headerMobileRef} className='w-full fixed top-0 left-0 z-50 header headerMobile'>
           <div className="flex w-full items-center justify-between pl-6 py-3 bg-color-marca">
             <Link prefetch={false} href="/" className="brand flex items-center text-xl text-white">
               <div className="flex justify-center items-center mr-[0.4rem]">
-                <Image width={25} height={25} alt="Fabio Tommasi Agro" priority loading='eager' src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/logo.svg"} />
+                <Image
+                  width={25}
+                  height={25}
+                  alt="Fabio Tommasi Agro"
+                  priority
+                  loading='eager'
+                  src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/logo.svg"}
+                />
               </div>
               <div className="flex flex-col pb-[3px]">
                 <h1>
@@ -96,23 +128,41 @@ export function Encabezado() {
               <button aria-label="Desplegar buscador" className="ml-3 flex items-center justify-center p-1">
                 <IconoLupa />
               </button>
-              <button className={estilo.burger} id="burger" aria-label="Abrir menu">
-                <span className={estilo.burgerLine}></span>
-                <span className={estilo.burgerLine}></span>
-                <span className={estilo.burgerLine}></span>
+              <button className={'burger'} id="burger" aria-label="Abrir menu">
+                <span className={'burgerLine'}></span>
+                <span className={'burgerLine'}></span>
+                <span className={'burgerLine'}></span>
               </button>
             </div>
           </div>
         </header>
         <div className="flex justify-around items-center bg-white py-1 md:hidden w-full">
           <a href="https://pncremolques.com.ar" target="_blank">
-            <Image width={384} height={122} priority loading="eager" className="h-[53px] w-auto" alt="PNC remolques" src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/pnc-logo.png"} />
+            <Image
+              loader={cdnLoader}
+              width={384}
+              height={122}
+              priority
+              loading="eager"
+              className="h-[53px] w-auto"
+              alt="PNC remolques"
+              src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/pnc-logo.webp"}
+            />
           </a>
           <a href="https://www.maquinasombu.com.ar/" target="_blank">
-            <Image width={384} height={150} priority loading='eager' className="h-[53px] w-auto" alt="Maquinarias agrícolas y remolques Ombú" src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/ombu-logo.png"} />
+            <Image
+              loader={cdnLoader}
+              width={384}
+              height={150}
+              priority
+              loading='eager'
+              className="h-[53px] w-auto"
+              alt="Maquinarias agrícolas y remolques Ombú"
+              src={"https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/ombu-logo.webp"}
+            />
           </a>
         </div>
       </>
     </>
   )
-}
+};

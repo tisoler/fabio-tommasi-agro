@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import estilo from'./carrusel.module.css';
+import estilo from'./carruselPrecios.module.css';
 import { PrecioMercadoTipo } from '@/app/_lib/tipos';
 
 export const revalidate = 3600; // regenerar la página cada 1 hora y guardar en caché
@@ -12,9 +12,9 @@ const ICONO: { [key: string]: string } = {
   trigoIcono: 'https://tisolercdn.nyc3.cdn.digitaloceanspaces.com/agrotommasi/genericas/trigo.svg',
 }
 
-const CarruselMercadoArgentino = ({ precios, className }: { precios: PrecioMercadoTipo[], className?: string }) => {
+const CarruselMercadoArgentino = ({ precios }: { precios: PrecioMercadoTipo[] }) => {
   return (
-    <div className={`w-[90vw] md:w-[750px] mx-auto overflow-hidden rounded-lg ${estilo.sliderContenedor} mb-5 ${className}`}>
+    <div className={`w-[90vw] md:w-[750px] mx-auto overflow-hidden rounded-lg ${estilo.sliderContenedor} mb-5 absolute top-[-35px] z-40 bg-white`}>
       <div className={estilo.slider}>
         {
           <>

@@ -168,7 +168,7 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
       </div>
       <div
         ref={scrollerRef}
-        className="flex w-full will-change-transform"
+        className="flex w-full will-change-transform h-[calc(100vw*5/4)] md:h-[430px]"
         onTouchStart={handleStart}
         onTouchMove={handleMove}
         onTouchEnd={handleEnd}
@@ -188,6 +188,7 @@ const Carrusel: React.FC<HorizontalScrollerProps> = ({
                 fill
                 className="object-cover object-center"
                 quality={85} // Optimización de calidad
+                sizes="100vw"
                 placeholder="blur" // Opcional: añadir blur placeholder
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//69NAMDA4MqxgFFALAQC/4vWZ0AAAAASUVORK5CYII=" // Base64 de baja calidad
                 // Custom loader para diferentes imágenes por breakpoint

@@ -1,10 +1,10 @@
 'use client';
 import React from "react";
-import estilo from './unidades.module.css';
+import estilo from './carruselUnidades.module.css';
 import BotonIzquierda from "../BotonIzquierda";
 import BotonDerecha from "../BotonDerecha";
 import { UnidadTipo } from "@/app/_lib/tipos";
-import UnidadTarjeta from "./CarruselUnidad";
+import UnidadTarjeta from "./carruselUnidad";
 
 const CarruselUnidades = ({ unidades, priorizar = false }: { unidades: UnidadTipo[], priorizar?: boolean }) => {
   let startX: number;
