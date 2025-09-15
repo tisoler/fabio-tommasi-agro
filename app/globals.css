@@ -44,15 +44,3 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
-
-h1 {
-  font-size: 27px;
-  line-height: 27px;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 25px;
-    line-height: 25px;
-  }
-}

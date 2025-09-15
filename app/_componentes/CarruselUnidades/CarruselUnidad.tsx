@@ -20,7 +20,7 @@ const UnidadTarjeta = (
           loader={cdnLoader}
           src={unidad.imagenDestacadaUrl}
           alt={unidad.imagenDestacadaTextoAlt}
-          priority={priorizar && typeof window !== "undefined" && window.innerWidth >= 768}
+          priority={priorizar}
           fill
           sizes="(max-width: 767px) 240px, 280px"
           className="object-cover object-center"

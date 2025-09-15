@@ -68,85 +68,89 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
-        <style dangerouslySetInnerHTML={{ __html: `
-          /* Los estilos críticos para el viewport inicial */
-          /* ENCABEZADO */
-          .header {
-            transition: transform 0.3s ease-in-out;
-          }
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              /* Los estilos críticos para el viewport inicial */
+              /* ENCABEZADO */
+              .header {
+                transition: transform 0.3s ease-in-out;
+              }
 
-          .header.hidden {
-            transform: translateY(-100%);
-          }
+              .header.hidden {
+                transform: translateY(-100%);
+              }
 
-          .headerMobile {
-            display: flex;
-          }
+              .headerMobile {
+                display: flex;
+              }
 
-          @media (min-width: 768px) {
-            .headerMobile {
-              display: none;
-            }
-          }
+              @media (min-width: 768px) {
+                .headerMobile {
+                  display: none;
+                }
+              }
 
-          .headerEscritorio {
-            display: none;
-          }
+              .headerEscritorio {
+                display: none;
+              }
 
-          @media (min-width: 768px) {
-            .headerEscritorio {
-              display: flex;
-            }
-          }
+              @media (min-width: 768px) {
+                .headerEscritorio {
+                  display: flex;
+                }
+              }
 
-          .headerPlaceholder {
-            transition: height 0.3s ease;
-          }
-          
-          .burger {
-            position: relative;
-            display: flex;
-            cursor: pointer;
-            width: 25px;
-            height: 20px;
-            opacity: 0;
-            visibility: hidden;
-            background: transparent;
-            align-items: center;
-            margin: auto 15px;
-          }
+              .headerPlaceholder {
+                transition: height 0.3s ease;
+              }
+              
+              .burger {
+                position: relative;
+                display: flex;
+                cursor: pointer;
+                width: 25px;
+                height: 20px;
+                opacity: 0;
+                visibility: hidden;
+                background: transparent;
+                align-items: center;
+                margin: auto 15px;
+              }
 
-          @media (max-width: 767px) {
-            .burger {
-              opacity: 1;
-              visibility: visible;
-            }
-          }
+              @media (max-width: 767px) {
+                .burger {
+                  opacity: 1;
+                  visibility: visible;
+                }
+              }
 
-          .burger .burgerLine {
-            position: absolute;
-            display: block;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            opacity: 1;
-            border-radius: 15px;
-            background: #fff;
-          }
+              .burger .burgerLine {
+                position: absolute;
+                display: block;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                opacity: 1;
+                border-radius: 15px;
+                background: #fff;
+              }
 
-          .burger .burgerLine:nth-child(1) {
-            top: 0px;
-          }
+              .burger .burgerLine:nth-child(1) {
+                top: 0px;
+              }
 
-          .burger .burgerLine:nth-child(2) {
-            top: 8px;
-            width: 70%;
-          }
+              .burger .burgerLine:nth-child(2) {
+                top: 8px;
+                width: 70%;
+              }
 
-          .burger .burgerLine:nth-child(3) {
-            top: 16px;
-          }
-        `}} />
+              .burger .burgerLine:nth-child(3) {
+                top: 16px;
+              }          
+            `,
+          }}
+        />
       </head>
       <body
         className={`${afacadSans.className} ${geistMono.className} antialiased`}

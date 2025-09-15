@@ -1,4 +1,6 @@
 import { Suspense } from "react";
+import { headers } from 'next/headers'
+import { userAgentFromString } from 'next/server';
 import dynamic from "next/dynamic";
 import { obtenerCategorias, obtenerPrecios, obtenerUnidadesNovedades, obtenerUnidadesOportunidades } from "@/app/_lib/servicios";
 import Carrusel from "../Carrusel";
@@ -7,6 +9,7 @@ import SkeletonCarrusel from "../Skeletons/Carrusel";
 import SkeletonCarruselUnidades from "../Skeletons/CarruselUnidades";
 import SkeletonListaCategorias from "../Skeletons/ListaCategorias";
 import SkeletonCarruselMercadoArgentino from "../Skeletons/CarruselMercadoArgentino";
+import SkeletonSubtitulo from "../Skeletons/Subtitulo";
 
 // Carga diferida del componente que no es crítico
 const SubtituloDinamico = dynamic(() => import('../Subtitulo/subtitulo'));
@@ -15,6 +18,10 @@ const CarruselMercadoArgentino = dynamic(() => import('../CarruselPrecios/carrus
 const PlacaVenta = dynamic(() => import('../PlacaVenta'));
 
 const ComponenteHome = async () => {
+  const headersList = await headers();
+  const userAgent = headersList.get('user-agent');
+  const esDispositivoMovil = userAgentFromString(userAgent || undefined)?.device?.type === 'mobile';
+
   const [precios, categorias, unidadesOportunidades, unidadesNovedades] = await Promise.all([
     obtenerPrecios(),
     obtenerCategorias(),
@@ -28,9 +35,11 @@ const ComponenteHome = async () => {
         <Carrusel />
       </Suspense>
       <Suspense fallback={<SkeletonCarruselUnidades />}>
-        <CarruselUnidades unidades={unidadesOportunidades} titulo='Oportunidades' priorizar />
+        <CarruselUnidades unidades={unidadesOportunidades} titulo='Oportunidades' priorizar={!esDispositivoMovil} />
       </Suspense>
-      <SubtituloDinamico />
+      <Suspense fallback={<SkeletonSubtitulo />}>
+        <SubtituloDinamico />
+      </Suspense>
       <Suspense fallback={<SkeletonListaCategorias />}>
         <ListaCategorias categorias={categorias} />
       </Suspense>

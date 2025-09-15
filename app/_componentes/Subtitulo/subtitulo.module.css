@@ -5,12 +5,14 @@
   height: 80px;
   overflow: visible;
   vertical-align: top;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 @media (max-width: 768px) {  
   .rotatingText {
-    min-width: 120px;
+    justify-content: end;
+    height: 45px;
+    min-width: 282px;
   }
 }
 

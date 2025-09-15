@@ -1,7 +1,6 @@
-'use client';
 import Image from 'next/image';
-import estilo from'./carruselPrecios.module.css';
 import { PrecioMercadoTipo } from '@/app/_lib/tipos';
+import estilo from './carruselPrecios.module.css';
 
 export const revalidate = 3600; // regenerar la página cada 1 hora y guardar en caché
 

@@ -10,7 +10,7 @@ export default function SkeletonCarruselUnidades() {
       </div>
       <div className="flex items-center relative w-full overflow-hidden pt-6">
         <SkeletonItem className="h-[32px] w-[32px] rounded hidden md:flex" />
-        <div className='flex gap-4 md:mx-1 overflow-x-hidden'>
+        <div className='flex gap-4 md:mx-1 overflow-x-hidden md:w-[calc(100%-64px)]'>
           {
             new Array(6).fill(true).map((_, idx) => (
               <div key={idx} className="w-[240px] md:w-[280px] border-1 border-gray-300 flex flex-col justify-between">

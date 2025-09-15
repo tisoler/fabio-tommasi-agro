@@ -53,6 +53,7 @@ export const obtenerCategorias = unstable_cache(
           mostrarHome: true,
         },
         order: [['id', 'ASC']],
+        raw: true,
       });
       if (!categorias?.length) return [];
       return categorias;
